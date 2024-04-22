@@ -2,51 +2,12 @@
 <html>
 <head>
     <title>Login</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            flex-direction: column;
-            gap: 15px;
-        }
-        label {
-            font-size: 14px;
-            margin-bottom: 5px;
-        }
-        input {
-            font-size: 16px;
-            padding: 5px;
-            margin-bottom: 15px;
-            width: 215px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-        button {
-            background-color: #D31024;
-            color: white;
-            font-size: 16px;
-            padding: 5px 0;
-            width: 215px;
-            border-radius: 20px 0 0px 0;
-            border: none;
-            cursor: pointer;
-        }
-        .error {
-            color: red;
-            font-size: 14px;
-            margin-bottom: 15px;
-        }
-    </style>
+    <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
     
     <div class="container">
-        <img src="img/Imagen de WhatsApp 2024-04-21 a las 20.59.42_7510a45d.jpg" alt="Logo ufps" width="200">
+        <img src="img/Imagen de WhatsApp 2024-04-21 a las 20.59.42_7510a45d.jpg" alt="Logo ufps" width="300">
         <label for="code">Código de estudiante:</label>
         <input type="text" id="code" name="code">
         <label for="password">Password:</label>
@@ -54,44 +15,6 @@
         <button id="login">Iniciar sesión</button>
         <div id="error" class="error"></div>
     </div>
-    <script>
-        const loginButton = document.getElementById('login');
-        const codeInput = document.getElementById('code');
-        const passwordInput = document.getElementById('password');
-        const errorDiv = document.getElementById('error');
-
-        loginButton.addEventListener('click', () => {
-            const code = codeInput.value;
-            const password = passwordInput.value;
-
-            if (code === '' || password === '') {
-                errorDiv.textContent = 'Por favor, ingrese todas las credenciales.';
-                return;
-            }
-
-            fetch('https://api-parcial.crangarita.repl.co/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ code, password })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.error) {
-                    errorDiv.textContent = 'Credenciales inválidas.';
-                    codeInput.value = '';
-                    passwordInput.value = '';
-                } else {
-                    localStorage.setItem('user', JSON.stringify(data));
-                    window.location.href = 'notas.html';
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                errorDiv.textContent = 'Error al iniciar sesión. Por favor, inténtelo más tarde.';
-            });
-        });
-    </script>
+    <script src="js/login.js"></script>
 </body>
 </html>

@@ -12,7 +12,7 @@ loginButton.addEventListener('click', () => {
         return;
     }
 
-    fetch('https://api-parcial.crangarita.repl.co/login', {
+    fetch('https://api-parcial.crangarita.repl.co/login',  {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
